@@ -58,4 +58,5 @@ A small go library to extract values from a JSON using JS-like syntax.
 
 #### Additional Details
 If the field is missing, the library will return an empty string by default. You can override this like this:
+
 `jsongo.NotFound = "notFound"`
