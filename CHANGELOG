@@ -1,2 +1,5 @@
+0.1.1
+    - Replaced regex with simple slice substring to improve performance (217 ns/op down from 7413 ns/op)
+
 0.1.0
     - Initial Commit

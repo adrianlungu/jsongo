@@ -1,3 +1,7 @@
+// For finding allocations
+// go test -c
+// GODEBUG=allocfreetrace=1 ./jsongo.test -test.run=none -test.bench=BenchmarkJsonGo -test.benchtime=10ms 2>trace.log
+
 package jsongo_test
 
 import (
@@ -79,6 +83,9 @@ func BenchmarkJsonGo(b *testing.B) {
 	if err != nil {
 		b.Fatal(err)
 	}
+
+	b.ReportAllocs()
+	b.ResetTimer()
 
 	for i:=0; i < b.N; i++ {
 		jsongo.Get("users[0].id", j)

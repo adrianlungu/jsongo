@@ -2,7 +2,6 @@ package jsongo
 
 import (
 	"strings"
-	"regexp"
 	"strconv"
 )
 
@@ -85,16 +84,10 @@ func getArrayObject(element string, json interface{}) interface{} {
 	// Get the name of the array
 	arrayName := element[:strings.Index(element, "[")]
 
-	regex, err := regexp.Compile(`\[(.*?)\]`)
-	if err != nil {
-		panic(err)
-	}
-
-	// Get the index as string
-	arrayIndexString := regex.FindStringSubmatch(element)
+	arrayIndexString := element[strings.Index(element, "[")+1:strings.Index(element, "]")]
 
 	// Convert the index from string to integer
-	arrayIndex, err := strconv.Atoi(arrayIndexString[1])
+	arrayIndex, err := strconv.Atoi(arrayIndexString)
 	if err != nil {
 		panic(err)
 	}
